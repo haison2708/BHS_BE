@@ -1,0 +1,84 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>BHS.API</RootNamespace>
+        <UserSecretsId>63d3014c-63c2-4011-a7c0-2fec5e6dcbad</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <EmbeddedResourceUseDependentUponConvention>true</EmbeddedResourceUseDependentUponConvention>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DocumentationFile>bin\Debug\BHS.API.xml</DocumentationFile>
+        <WarningLevel>4</WarningLevel>
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DocumentationFile>bin\Release\BHS.API.xml</DocumentationFile>
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="CommandValidators\CartValidator\**" />
+        <Content Remove="CommandValidators\CartValidator\**" />
+        <EmbeddedResource Remove="CommandValidators\CartValidator\**" />
+        <None Remove="CommandValidators\CartValidator\**" />
+        <EmbeddedResource Update="Resources\CommonValidationLocalization.vi.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>CommonValidationLocalization.vi.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\CommonValidationLocalization.en.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>CommonValidationLocalization.en.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\CommonValidationLocalization.vi.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>CommonValidationLocalization.vi.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <Compile Update="Resources\CommonValidationLocalization.vi.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>CommonValidationLocalization.vi.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Update="Resources\CommonValidationLocalization.en.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>CommonValidationLocalization.en.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <Compile Update="Resources\CommonValidationLocalization.en.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>CommonValidationLocalization.en.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+        <PackageReference Include="Azure.Storage.Blobs" Version="12.13.0" />
+        <PackageReference Include="Dapper" Version="2.0.123" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.1.0" />
+        <PackageReference Include="Hangfire.AspNetCore" Version="1.7.30" />
+        <PackageReference Include="Hangfire.Core" Version="1.7.30" />
+        <PackageReference Include="Hangfire.SqlServer" Version="1.7.30" />
+        <PackageReference Include="IdentityModel" Version="4.0.0" />
+        <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.9" />
+        <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\BHS.Infrastructure\BHS.Infrastructure.csproj">
+            <Private>True</Private>
+        </ProjectReference>
+    </ItemGroup>
+
+</Project>
